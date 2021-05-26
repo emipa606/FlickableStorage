@@ -1,4 +1,7 @@
 # Changelog for FlickableStorage
 
+1.0.1.0 - Added multiplayer support, via NotFood
+
+
 1.0.0.0 - First publish
 

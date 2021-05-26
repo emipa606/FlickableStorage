@@ -44,8 +44,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Building_Storage_Accepts.cs" />
+    <Compile Include="Building_Storage_GetGizmos.cs" />
     <Compile Include="FlickableStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ForbidUtility_IsForbidden_Thing.cs" />
+    <Compile Include="StorageTracker.cs" />
+    <Compile Include="Zone_Stockpile_Accepts.cs" />
+    <Compile Include="Zone_Stockpile_GetGizmos.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

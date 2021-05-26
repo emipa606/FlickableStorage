@@ -20,24 +20,14 @@ namespace FlickableStorage
 
         public int this[Zone_Stockpile zone]
         {
-            get {
-                return StockpileStatuses[zone];
-            }
-            [SyncMethod]
-            set {
-                StockpileStatuses[zone] = value;
-            }
+            get => StockpileStatuses[zone];
+            [SyncMethod] set => StockpileStatuses[zone] = value;
         }
 
         public int this[Building_Storage building]
         {
-            get {
-                return StorageStatuses[building];
-            }
-            [SyncMethod]
-            set {
-                StorageStatuses[building] = value;
-            }
+            get => StorageStatuses[building];
+            [SyncMethod] set => StorageStatuses[building] = value;
         }
 
         public bool Has(Zone_Stockpile zone)

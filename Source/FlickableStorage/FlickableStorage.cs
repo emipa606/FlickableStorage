@@ -19,8 +19,10 @@ namespace FlickableStorage
         {
             var harmony = new Harmony("Mlie.FlickableStorage");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-
-            if (MP.enabled) MP.RegisterAll();
+            if (MP.enabled)
+            {
+                MP.RegisterAll();
+            }
         }
 
         public static Command_Action GetStorageCommandAction(Building_Storage storage)
