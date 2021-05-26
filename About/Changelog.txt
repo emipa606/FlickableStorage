@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.0.2.0 - Added chinese translation, thanks HawnHan!
+
+
 1.0.1.0 - Added multiplayer support, via NotFood
 
 

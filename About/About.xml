@@ -41,6 +41,8 @@ The blocking of retrieving items is done by modifying the Forbidden check for th
 
 Should work with all mods that add storage buildings using the Storage_Building or Zone_Stockpile class. Tested for example with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1617282896]LWM's Deep Storage[/url]
 
+Also works with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1752864297]Multiplayer[/url], thanks Notfood!
+
 Idea by: Velcroboy333
 
 [table]
