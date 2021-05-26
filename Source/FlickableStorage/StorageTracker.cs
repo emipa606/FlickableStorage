@@ -7,14 +7,44 @@ namespace FlickableStorage
     public class StorageTracker : MapComponent
     {
         private List<Zone_Stockpile> stockpileKeys;
-        public Dictionary<Zone_Stockpile, int> StockpileStatuses = new Dictionary<Zone_Stockpile, int>();
+        private Dictionary<Zone_Stockpile, int> StockpileStatuses = new Dictionary<Zone_Stockpile, int>();
         private List<int> stockpileValues;
         private List<Building_Storage> storageKeys;
-        public Dictionary<Building_Storage, int> StorageStatuses = new Dictionary<Building_Storage, int>();
+        private Dictionary<Building_Storage, int> StorageStatuses = new Dictionary<Building_Storage, int>();
         private List<int> storageValues;
 
         public StorageTracker(Map map) : base(map)
         {
+        }
+
+        public int this[Zone_Stockpile zone]
+        {
+            get {
+                return StockpileStatuses[zone];
+            }
+            set {
+                StockpileStatuses[zone] = value;
+            }
+        }
+
+        public int this[Building_Storage building]
+        {
+            get {
+                return StorageStatuses[building];
+            }
+            set {
+                StorageStatuses[building] = value;
+            }
+        }
+
+        public bool Has(Zone_Stockpile zone)
+        {
+            return StockpileStatuses.ContainsKey(zone);
+        }
+
+        public bool Has(Building_Storage building)
+        {
+            return StorageStatuses.ContainsKey(building);
         }
 
         public override void ExposeData()
