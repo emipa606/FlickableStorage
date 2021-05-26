@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using HarmonyLib;
+using Multiplayer.API;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -18,6 +19,8 @@ namespace FlickableStorage
         {
             var harmony = new Harmony("Mlie.FlickableStorage");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
+
+            if (MP.enabled) MP.RegisterAll();
         }
 
         public static Command_Action GetStorageCommandAction(Building_Storage storage)
@@ -30,12 +33,12 @@ namespace FlickableStorage
                 return null;
             }
 
-            if (!storageTracker.StorageStatuses.ContainsKey(storage))
+            if (!storageTracker.Has(storage))
             {
-                storageTracker.StorageStatuses[storage] = 0;
+                storageTracker[storage] = 0;
             }
 
-            switch (storageTracker.StorageStatuses[storage])
+            switch (storageTracker[storage])
             {
                 case 1:
                     return new Command_Action
@@ -43,7 +46,7 @@ namespace FlickableStorage
                         icon = FlickOffGizmo,
                         defaultLabel = "FlickableStorage.Label.Off".Translate(),
                         defaultDesc = "FlickableStorage.Description.Off".Translate(),
-                        action = delegate { storageTracker.StorageStatuses[storage] = 2; }
+                        action = delegate { storageTracker[storage] = 2; }
                     };
                 case 2:
                     return new Command_Action
@@ -51,7 +54,7 @@ namespace FlickableStorage
                         icon = FlickInGizmo,
                         defaultLabel = "FlickableStorage.Label.In".Translate(),
                         defaultDesc = "FlickableStorage.Description.In".Translate(),
-                        action = delegate { storageTracker.StorageStatuses[storage] = 3; }
+                        action = delegate { storageTracker[storage] = 3; }
                     };
                 case 3:
                     return new Command_Action
@@ -59,7 +62,7 @@ namespace FlickableStorage
                         icon = FlickOutGizmo,
                         defaultLabel = "FlickableStorage.Label.Out".Translate(),
                         defaultDesc = "FlickableStorage.Description.Out".Translate(),
-                        action = delegate { storageTracker.StorageStatuses[storage] = 0; }
+                        action = delegate { storageTracker[storage] = 0; }
                     };
                 default:
                     return new Command_Action
@@ -67,7 +70,7 @@ namespace FlickableStorage
                         icon = FlickOnGizmo,
                         defaultLabel = "FlickableStorage.Label.On".Translate(),
                         defaultDesc = "FlickableStorage.Description.On".Translate(),
-                        action = delegate { storageTracker.StorageStatuses[storage] = 1; }
+                        action = delegate { storageTracker[storage] = 1; }
                     };
             }
         }
@@ -82,12 +85,12 @@ namespace FlickableStorage
                 return null;
             }
 
-            if (!storageTracker.StockpileStatuses.ContainsKey(stockpile))
+            if (!storageTracker.Has(stockpile))
             {
-                storageTracker.StockpileStatuses[stockpile] = 0;
+                storageTracker[stockpile] = 0;
             }
 
-            switch (storageTracker.StockpileStatuses[stockpile])
+            switch (storageTracker[stockpile])
             {
                 case 1:
                     return new Command_Action
@@ -95,7 +98,7 @@ namespace FlickableStorage
                         icon = FlickOffGizmo,
                         defaultLabel = "FlickableStorage.Label.Off".Translate(),
                         defaultDesc = "FlickableStorage.Description.Off".Translate(),
-                        action = delegate { storageTracker.StockpileStatuses[stockpile] = 2; }
+                        action = delegate { storageTracker[stockpile] = 2; }
                     };
                 case 2:
                     return new Command_Action
@@ -103,7 +106,7 @@ namespace FlickableStorage
                         icon = FlickInGizmo,
                         defaultLabel = "FlickableStorage.Label.In".Translate(),
                         defaultDesc = "FlickableStorage.Description.In".Translate(),
-                        action = delegate { storageTracker.StockpileStatuses[stockpile] = 3; }
+                        action = delegate { storageTracker[stockpile] = 3; }
                     };
                 case 3:
                     return new Command_Action
@@ -111,7 +114,7 @@ namespace FlickableStorage
                         icon = FlickOutGizmo,
                         defaultLabel = "FlickableStorage.Label.Out".Translate(),
                         defaultDesc = "FlickableStorage.Description.Out".Translate(),
-                        action = delegate { storageTracker.StockpileStatuses[stockpile] = 0; }
+                        action = delegate { storageTracker[stockpile] = 0; }
                     };
                 default:
                     return new Command_Action
@@ -119,7 +122,7 @@ namespace FlickableStorage
                         icon = FlickOnGizmo,
                         defaultLabel = "FlickableStorage.Label.On".Translate(),
                         defaultDesc = "FlickableStorage.Description.On".Translate(),
-                        action = delegate { storageTracker.StockpileStatuses[stockpile] = 1; }
+                        action = delegate { storageTracker[stockpile] = 1; }
                     };
             }
         }
@@ -146,9 +149,9 @@ namespace FlickableStorage
 
             if (parent is Zone_Stockpile parentStockpile)
             {
-                if (!storageTracker.StockpileStatuses.ContainsKey(parentStockpile) ||
-                    storageTracker.StockpileStatuses[parentStockpile] == 0 ||
-                    storageTracker.StockpileStatuses[parentStockpile] == 3)
+                if (!storageTracker.Has(parentStockpile) ||
+                    storageTracker[parentStockpile] == 0 ||
+                    storageTracker[parentStockpile] == 3)
                 {
                     return false;
                 }
@@ -158,9 +161,9 @@ namespace FlickableStorage
 
             if (parent is Building_Storage parentStorage)
             {
-                if (!storageTracker.StorageStatuses.ContainsKey(parentStorage) ||
-                    storageTracker.StorageStatuses[parentStorage] == 0 ||
-                    storageTracker.StorageStatuses[parentStorage] == 3)
+                if (!storageTracker.Has(parentStorage) ||
+                    storageTracker[parentStorage] == 0 ||
+                    storageTracker[parentStorage] == 3)
                 {
                     return false;
                 }

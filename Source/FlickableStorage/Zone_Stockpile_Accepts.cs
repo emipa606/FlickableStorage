@@ -15,8 +15,8 @@ namespace FlickableStorage
                 return true;
             }
 
-            if (!storageTracker.StockpileStatuses.ContainsKey(__instance) ||
-                storageTracker.StockpileStatuses[__instance] == 0 || storageTracker.StockpileStatuses[__instance] == 2)
+            if (!storageTracker.Has(__instance) ||
+                storageTracker[__instance] == 0 || storageTracker[__instance] == 2)
             {
                 return true;
             }
