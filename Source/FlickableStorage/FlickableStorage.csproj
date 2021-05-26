@@ -19,6 +19,9 @@
       <Version>*</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
+    <PackageReference Include="RimWorld.MultiplayerAPI">
+      <Version>*</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

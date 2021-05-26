@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Multiplayer.API;
 using RimWorld;
 using Verse;
 
@@ -22,6 +23,7 @@ namespace FlickableStorage
             get {
                 return StockpileStatuses[zone];
             }
+            [SyncMethod]
             set {
                 StockpileStatuses[zone] = value;
             }
@@ -32,6 +34,7 @@ namespace FlickableStorage
             get {
                 return StorageStatuses[building];
             }
+            [SyncMethod]
             set {
                 StorageStatuses[building] = value;
             }
