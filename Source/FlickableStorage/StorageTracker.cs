@@ -7,46 +7,30 @@ namespace FlickableStorage
 {
     public class StorageTracker : MapComponent
     {
-        private List<Zone_Stockpile> stockpileKeys;
-        private Dictionary<Zone_Stockpile, int> StockpileStatuses = new Dictionary<Zone_Stockpile, int>();
-        private List<int> stockpileValues;
-        private List<Building_Storage> storageKeys;
-        private Dictionary<Building_Storage, int> StorageStatuses = new Dictionary<Building_Storage, int>();
-        private List<int> storageValues;
+        private Dictionary<IHaulDestination, int> haulDestinations = new Dictionary<IHaulDestination, int>();
+        private List<IHaulDestination> tmpHaulDestinationsKeys;
+        private List<int> tmpHaulDestinationValues;
+
 
         public StorageTracker(Map map) : base(map)
         {
         }
 
-        public int this[Zone_Stockpile zone]
+        public int this[IHaulDestination destination]
         {
-            get => StockpileStatuses[zone];
-            [SyncMethod] set => StockpileStatuses[zone] = value;
+            get => haulDestinations[destination];
+            [SyncMethod] set => haulDestinations[destination] = value;
         }
 
-        public int this[Building_Storage building]
+        public bool Has(IHaulDestination zone)
         {
-            get => StorageStatuses[building];
-            [SyncMethod] set => StorageStatuses[building] = value;
-        }
-
-        public bool Has(Zone_Stockpile zone)
-        {
-            return StockpileStatuses.ContainsKey(zone);
-        }
-
-        public bool Has(Building_Storage building)
-        {
-            return StorageStatuses.ContainsKey(building);
+            return haulDestinations.ContainsKey(zone);
         }
 
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Collections.Look(ref StorageStatuses, "StorageStatuses", LookMode.Reference, LookMode.Value,
-                ref storageKeys, ref storageValues);
-            Scribe_Collections.Look(ref StockpileStatuses, "StockpileStatuses", LookMode.Reference, LookMode.Value,
-                ref stockpileKeys, ref stockpileValues);
+            Scribe_Collections.Look(ref haulDestinations, "StockpileStatuses", LookMode.Reference, LookMode.Value, ref tmpHaulDestinationsKeys, ref tmpHaulDestinationValues);
         }
     }
 }
