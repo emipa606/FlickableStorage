@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.0.3.0 - Optimized mapcomponent fetch, now supports more storages. Fixed by notfood
+
+
 1.0.2.0 - Added chinese translation, thanks HawnHan!
 
 

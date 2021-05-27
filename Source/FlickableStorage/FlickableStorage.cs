@@ -20,7 +20,8 @@ namespace FlickableStorage
 
         internal static readonly List<Type> targets;
 
-        internal static readonly Dictionary<Map, StorageTracker> storageTrackerCache = new Dictionary<Map, StorageTracker>();
+        private static readonly Dictionary<Map, StorageTracker> storageTrackerCache =
+            new Dictionary<Map, StorageTracker>();
 
         static FlickableStorage()
         {
@@ -33,23 +34,28 @@ namespace FlickableStorage
             }
         }
 
-        private static bool IsHaulDestinationImplementationWithGizmos(Type t) {
+        private static bool IsHaulDestinationImplementationWithGizmos(Type t)
+        {
             return !t.IsAbstract
-                && t.GetInterfaces().Contains(typeof(IHaulDestination))
-                && AccessTools.Method(t, "GetGizmos") != null;
+                   && t.GetInterfaces().Contains(typeof(IHaulDestination))
+                   && AccessTools.Method(t, "GetGizmos") != null;
         }
 
         internal static StorageTracker GetStorageTracker(this Map map)
         {
-            if (map == null) {
+            if (map == null)
+            {
                 return null;
             }
 
             StorageTracker value;
 
-            if (!storageTrackerCache.ContainsKey(map)) {
+            if (!storageTrackerCache.ContainsKey(map))
+            {
                 value = storageTrackerCache[map] = map.GetComponent<StorageTracker>();
-            } else {
+            }
+            else
+            {
                 value = storageTrackerCache[map];
             }
 

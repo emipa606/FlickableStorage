@@ -27,6 +27,8 @@ Should work with all mods that add storage buildings using the Storage_Building 
 
 Also works with https://steamcommunity.com/sharedfiles/filedetails/?id=1752864297]Multiplayer, thanks Notfood!
 
+Chinese translation by HawnHan!
+
 Idea by: Velcroboy333
 
 [table]

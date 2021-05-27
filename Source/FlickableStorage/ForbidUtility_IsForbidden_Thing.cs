@@ -37,19 +37,15 @@ namespace FlickableStorage
                 return false;
             }
 
-            if (parent is IHaulDestination destination)
+            var destination = (IHaulDestination) parent;
+            if (!storageTracker.Has(destination) ||
+                storageTracker[destination] == 0 ||
+                storageTracker[destination] == 3)
             {
-                if (!storageTracker.Has(destination) ||
-                    storageTracker[destination] == 0 ||
-                    storageTracker[destination] == 3)
-                {
-                    return false;
-                }
-
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
     }
 }

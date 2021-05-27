@@ -12,7 +12,8 @@ namespace FlickableStorage
     {
         private static IEnumerable<MethodBase> TargetMethods()
         {
-            foreach(var type in FlickableStorage.targets) {
+            foreach (var type in FlickableStorage.targets)
+            {
                 yield return AccessTools.Method(type, "GetGizmos");
             }
         }
@@ -26,7 +27,8 @@ namespace FlickableStorage
 
         private static Command_Action GetCommandAction(IHaulDestination destination)
         {
-            var storageTracker = destination.Map.GetStorageTracker();;
+            var storageTracker = destination.Map.GetStorageTracker();
+
             if (storageTracker == null)
             {
                 Log.ErrorOnce("[FlickableStorage]: Could not find StorageTracker for map, this should not happen.",

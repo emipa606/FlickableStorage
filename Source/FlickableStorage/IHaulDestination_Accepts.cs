@@ -2,7 +2,6 @@
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
-using Verse;
 
 namespace FlickableStorage
 {
@@ -11,7 +10,8 @@ namespace FlickableStorage
     {
         private static IEnumerable<MethodBase> TargetMethods()
         {
-            foreach(var type in FlickableStorage.targets) {
+            foreach (var type in FlickableStorage.targets)
+            {
                 yield return AccessTools.Method(type, nameof(IHaulDestination.Accepts));
             }
         }
