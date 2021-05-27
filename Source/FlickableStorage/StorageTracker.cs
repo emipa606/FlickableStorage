@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -29,7 +30,24 @@ namespace FlickableStorage
         public override void ExposeData()
         {
             base.ExposeData();
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                Cull();
+            }
             Scribe_Collections.Look(ref haulDestinations, "StockpileStatuses", LookMode.Reference, LookMode.Value, ref tmpHaulDestinationsKeys, ref tmpHaulDestinationValues);
+        }
+
+        private void Cull()
+        {
+            foreach (var destination in haulDestinations.Keys.ToList()) 
+            {
+                var inPlace = map.haulDestinationManager.AllHaulDestinations
+                              .FirstOrDefault(d => d.Position == destination.Position);
+                if (inPlace != destination || haulDestinations[destination] == 0)
+                {
+                    haulDestinations.Remove(destination);
+                }
+            }
         }
     }
 }
