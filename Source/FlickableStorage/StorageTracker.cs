@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Multiplayer.API;
 using RimWorld;
 using Verse;
 
@@ -19,7 +18,7 @@ namespace FlickableStorage
         public int this[IHaulDestination destination]
         {
             get => haulDestinations[destination];
-            [SyncMethod] set => haulDestinations[destination] = value;
+            set => haulDestinations[destination] = value;
         }
 
         public bool Has(IHaulDestination zone)
