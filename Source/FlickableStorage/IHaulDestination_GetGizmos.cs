@@ -36,12 +36,17 @@ namespace FlickableStorage
                 return null;
             }
 
-            if (!storageTracker.Has(destination))
+            int current;
+            if (storageTracker.Has(destination))
             {
-                storageTracker[destination] = 0;
+                current = storageTracker[destination];
+            }
+            else
+            {
+                current = 0;
             }
 
-            switch (storageTracker[destination])
+            switch (current)
             {
                 case 1:
                     return new Command_Action

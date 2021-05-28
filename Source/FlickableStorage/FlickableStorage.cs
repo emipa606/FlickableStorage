@@ -28,10 +28,6 @@ namespace FlickableStorage
             targets = GenTypes.AllTypes.Where(IsHaulDestinationImplementationWithGizmos).ToList();
             var harmony = new Harmony("Mlie.FlickableStorage");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-            if (MP.enabled)
-            {
-                MP.RegisterAll();
-            }
         }
 
         private static bool IsHaulDestinationImplementationWithGizmos(Type t)
