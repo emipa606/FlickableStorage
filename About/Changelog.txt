@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.0.4.0 - Multiplayer fixed
+
+
 1.0.3.0 - Optimized mapcomponent fetch, now supports more storages. Fixed by notfood
 
 

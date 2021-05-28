@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using HarmonyLib;
 using Multiplayer.API;
 using RimWorld;
@@ -7,11 +7,14 @@ using Verse;
 namespace FlickableStorage
 {
     [StaticConstructorOnStartup]
-    static class Multiplayer
+    internal static class Multiplayer
     {
         static Multiplayer()
         {
-            if (!MP.enabled) return;
+            if (!MP.enabled)
+            {
+                return;
+            }
 
             MP.RegisterSyncWorker<IHaulDestination>(IHaulDestinationWorker);
             MP.RegisterSyncMethod(AccessTools.Method(typeof(StorageTracker), "set_Item"));
@@ -30,7 +33,7 @@ namespace FlickableStorage
                 var pos = sync.Read<IntVec3>();
 
                 destination = map.haulDestinationManager.AllHaulDestinationsListForReading
-                              .FirstOrDefault(d => d.Position == pos);
+                    .FirstOrDefault(d => d.Position == pos);
             }
         }
     }

@@ -36,15 +36,7 @@ namespace FlickableStorage
                 return null;
             }
 
-            int current;
-            if (storageTracker.Has(destination))
-            {
-                current = storageTracker[destination];
-            }
-            else
-            {
-                current = 0;
-            }
+            var current = storageTracker.Has(destination) ? storageTracker[destination] : 0;
 
             switch (current)
             {

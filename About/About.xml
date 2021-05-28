@@ -39,13 +39,12 @@ You want to have a stack of steel left at all times for emergency trap-building.
 The blocking of storing new items is done by modifying the Accept-check for the storage.
 The blocking of retrieving items is done by modifying the Forbidden check for the items in the storage. Pawns with mental break ignores the forbidden check so they will still be able to fetch items.
 
-Should work with all mods that add storage buildings using the Storage_Building or Zone_Stockpile class. Tested for example with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1617282896]LWM's Deep Storage[/url]
+Should work with all mods that add storage buildings using the IHaulDestination class. Tested for example with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1617282896]LWM's Deep Storage[/url]
 
-Also works with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1752864297]Multiplayer[/url], thanks Notfood!
-
-Chinese translation by HawnHan!
-
-Idea by: Velcroboy333
+[h2]Credits[/h2]
+notfood: Support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1752864297]Multiplayer[/url], optimization and generalization
+HawnHan: Chinese translation
+Velcroboy333: Original idea
 
 [table]
     [tr]
