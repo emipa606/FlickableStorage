@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.0.5.0 - Added back pruning, removed by mistake
+
+
 1.0.4.0 - Multiplayer fixed
 
 

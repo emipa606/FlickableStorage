@@ -14,18 +14,21 @@ Storage-buildings and stockpiles can be set to one of four settings
 
 
 
-[h2]Examples[/h2]
+## Examples
+
 Your prison cells have a storage unit for food, but when there is no prisoners you want to stop hauling food for it without changing storage filters or priorities. You turn the shelf to retrieve only when there are no prisoners.
 
 You want to have a stack of steel left at all times for emergency trap-building. You set one shelf to store only with highest priority. 
 
-[h2]Technical[/h2]
+## Technical
+
 The blocking of storing new items is done by modifying the Accept-check for the storage.
 The blocking of retrieving items is done by modifying the Forbidden check for the items in the storage. Pawns with mental break ignores the forbidden check so they will still be able to fetch items.
 
 Should work with all mods that add storage buildings using the IHaulDestination class. Tested for example with https://steamcommunity.com/sharedfiles/filedetails/?id=1617282896]LWM's Deep Storage
 
-[h2]Credits[/h2]
+## Credits
+
 notfood: Support for https://steamcommunity.com/sharedfiles/filedetails/?id=1752864297]Multiplayer, optimization and generalization
 HawnHan: Chinese translation
 Velcroboy333: Original idea
