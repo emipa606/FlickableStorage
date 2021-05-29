@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
@@ -18,21 +17,31 @@ namespace FlickableStorage
             }
         }
 
-        private static void Postfix(ref IEnumerable<Gizmo> __result, IHaulDestination __instance)
+        private static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> __result, object __instance)
         {
-            var gizmos = __result.ToList();
-            gizmos.Add(GetCommandAction(__instance));
-            __result = gizmos;
+            foreach (var gizmo in __result)
+            {
+                yield return gizmo;
+            }
+
+            if (__instance is IHaulDestination destination)
+            {
+                yield return GetCommandAction(destination);
+            }
         }
 
         private static Command_Action GetCommandAction(IHaulDestination destination)
         {
-            var storageTracker = destination.Map.GetStorageTracker();
+            var storageTracker = destination?.Map?.GetStorageTracker();
 
             if (storageTracker == null)
             {
-                Log.ErrorOnce("[FlickableStorage]: Could not find StorageTracker for map, this should not happen.",
-                    destination.GetHashCode());
+                if (destination != null)
+                {
+                    Log.ErrorOnce("[FlickableStorage]: Could not find StorageTracker for map, this should not happen.",
+                        destination.GetHashCode());
+                }
+
                 return null;
             }
 

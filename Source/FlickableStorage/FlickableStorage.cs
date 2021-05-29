@@ -25,6 +25,7 @@ namespace FlickableStorage
         static FlickableStorage()
         {
             targets = GenTypes.AllTypes.Where(IsHaulDestinationImplementationWithGizmos).ToList();
+            Log.Message($"[FlickableStorage] Found storage-classes: {string.Join(", ", targets)}");
             var harmony = new Harmony("Mlie.FlickableStorage");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
