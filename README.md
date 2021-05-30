@@ -30,6 +30,7 @@ Should work with all mods that add storage buildings using the IHaulDestination 
 ## Credits
 
 notfood: Support for https://steamcommunity.com/sharedfiles/filedetails/?id=1752864297]Multiplayer, optimization and generalization
+Waveshaper: Debugging
 HawnHan: Chinese translation
 Velcroboy333: Original idea
 

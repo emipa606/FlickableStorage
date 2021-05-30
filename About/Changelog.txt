@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.0.7.0 - Should now only block forbiddable things in storage
+
+
 1.0.6.0 - Fixes an issue with Gastronomy
 
 

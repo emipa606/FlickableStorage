@@ -24,7 +24,13 @@ namespace FlickableStorage
                 return false;
             }
 
-            return IsPositionLocked(item.Position, item.Map);
+            if (!(item is ThingWithComps thingWithComps))
+            {
+                return false;
+            }
+
+            var comp = thingWithComps.GetComp<CompForbiddable>();
+            return comp != null && IsPositionLocked(item.Position, item.Map);
         }
 
 
