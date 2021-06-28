@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.0.8.0 - Fixed retrieve only-areas being emptied to other storages regardless of priority
+
+
 1.0.7.0 - Should now only block forbiddable things in storage
 
 

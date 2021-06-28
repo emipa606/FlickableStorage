@@ -11,7 +11,6 @@ namespace FlickableStorage
         private List<IHaulDestination> tmpHaulDestinationsKeys;
         private List<int> tmpHaulDestinationValues;
 
-
         public StorageTracker(Map map) : base(map)
         {
         }

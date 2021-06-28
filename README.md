@@ -27,6 +27,8 @@ The blocking of retrieving items is done by modifying the Forbidden check for th
 
 Should work with all mods that add storage buildings using the IHaulDestination class. Tested for example with https://steamcommunity.com/sharedfiles/filedetails/?id=1617282896]LWM's Deep Storage
 
+NOTE: Chunks cannot be forbidden so are ignored by this mods settings. You can fix this by adding  https://steamcommunity.com/sharedfiles/filedetails/?id=2054653797][XND] Forbiddable Debris
+
 ## Credits
 
 notfood: Support for https://steamcommunity.com/sharedfiles/filedetails/?id=1752864297]Multiplayer, optimization and generalization
