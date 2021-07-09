@@ -7,7 +7,7 @@ namespace FlickableStorage
     [HarmonyPatch(typeof(StoreUtility), "StoragePriorityAtFor", typeof(IHaulDestination), typeof(Thing))]
     internal class StoreUtility_StoragePriorityAtFor
     {
-        private static void Prefix(IHaulDestination at, Thing t, out int __state)
+        private static void Prefix(IHaulDestination at, out int __state)
         {
             __state = -1;
             var destination = at;
@@ -27,7 +27,7 @@ namespace FlickableStorage
             storageTracker[destination] = 0;
         }
 
-        private static void Postfix(IHaulDestination at, Thing t, int __state)
+        private static void Postfix(IHaulDestination at, int __state)
         {
             if (__state == -1)
             {

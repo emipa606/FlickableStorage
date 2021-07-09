@@ -7,6 +7,7 @@
   <supportedVersions>
     <li>1.1</li>
     <li>1.2</li>
+    <li>1.3</li>
   </supportedVersions>
   <modDependencies>
     <li>
@@ -39,7 +40,7 @@ You want to have a stack of steel left at all times for emergency trap-building.
 The blocking of storing new items is done by modifying the Accept-check for the storage.
 The blocking of retrieving items is done by modifying the Forbidden check for the items in the storage. Pawns with mental break ignores the forbidden check so they will still be able to fetch items.
 
-Should work with all mods that add storage buildings using the IHaulDestination class. Tested for example with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1617282896]LWM's Deep Storage[/url]
+Should work with all mods that add storage buildings using the IHaulDestination class. Tested for example with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1617282896]LWM&apos;s Deep Storage[/url]
 
 NOTE: Chunks cannot be forbidden so are ignored by this mods settings. You can fix this by adding [url= https://steamcommunity.com/sharedfiles/filedetails/?id=2054653797][XND] Forbiddable Debris[/url]
 
