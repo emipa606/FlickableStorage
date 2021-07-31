@@ -32,7 +32,7 @@ namespace FlickableStorage
                 case ThingWithComps thingWithComps:
                 {
                     var comp = thingWithComps.GetComp<CompForbiddable>();
-                    return comp != null && IsPositionLocked(item.Position, item.Map);
+                    return comp != null && IsPositionLocked(item.Position, item.Map, item);
                 }
             }
 
@@ -40,7 +40,7 @@ namespace FlickableStorage
         }
 
 
-        private static bool IsPositionLocked(IntVec3 position, Map map)
+        private static bool IsPositionLocked(IntVec3 position, Map map, Thing thing)
         {
             var parent = position.GetSlotGroup(map)?.parent;
             var storageTracker = parent?.Map.GetStorageTracker();
@@ -57,7 +57,7 @@ namespace FlickableStorage
                 return false;
             }
 
-            return true;
+            return destination.GetStoreSettings().AllowedToAccept(thing);
         }
     }
 }

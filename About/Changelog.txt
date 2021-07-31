@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.0.11.0 - Storages should now only forbid items that are allowed by the storage filter
+
+
 1.0.10.0 - Should now be possible to build and deconstruct items in forbidden/accept only stockpile
 
 
