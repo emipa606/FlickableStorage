@@ -24,13 +24,19 @@ namespace FlickableStorage
                 return false;
             }
 
-            if (!(item is ThingWithComps thingWithComps))
+            switch (item)
             {
-                return false;
+                case Blueprint:
+                case Frame:
+                    return false;
+                case ThingWithComps thingWithComps:
+                {
+                    var comp = thingWithComps.GetComp<CompForbiddable>();
+                    return comp != null && IsPositionLocked(item.Position, item.Map);
+                }
             }
 
-            var comp = thingWithComps.GetComp<CompForbiddable>();
-            return comp != null && IsPositionLocked(item.Position, item.Map);
+            return false;
         }
 
 

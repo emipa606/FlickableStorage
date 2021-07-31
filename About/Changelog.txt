@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.0.10.0 - Should now be possible to build and deconstruct items in forbidden/accept only stockpile
+
+
 1.0.9.0 - Mod updated for 1.3 and passed autotests
 
 
