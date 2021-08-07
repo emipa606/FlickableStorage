@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.0.12.0 - Should no longer conflict with Preset Filter Zones
+
+
 1.0.11.0 - Storages should now only forbid items that are allowed by the storage filter
 
 
