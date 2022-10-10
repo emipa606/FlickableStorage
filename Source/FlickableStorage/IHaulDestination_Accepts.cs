@@ -3,35 +3,34 @@ using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 
-namespace FlickableStorage
+namespace FlickableStorage;
+
+[HarmonyPatch]
+internal class IHaulDestination_Accepts
 {
-    [HarmonyPatch]
-    internal class IHaulDestination_Accepts
+    private static IEnumerable<MethodBase> TargetMethods()
     {
-        private static IEnumerable<MethodBase> TargetMethods()
+        foreach (var type in FlickableStorage.targets)
         {
-            foreach (var type in FlickableStorage.targets)
-            {
-                yield return AccessTools.Method(type, nameof(IHaulDestination.Accepts));
-            }
+            yield return AccessTools.Method(type, nameof(IHaulDestination.Accepts));
+        }
+    }
+
+    private static bool Prefix(IHaulDestination __instance, ref bool __result)
+    {
+        var storageTracker = __instance.Map.GetStorageTracker();
+        if (storageTracker == null)
+        {
+            return true;
         }
 
-        private static bool Prefix(IHaulDestination __instance, ref bool __result)
+        if (!storageTracker.Has(__instance) ||
+            storageTracker[__instance] == 0 || storageTracker[__instance] == 2)
         {
-            var storageTracker = __instance.Map.GetStorageTracker();
-            if (storageTracker == null)
-            {
-                return true;
-            }
-
-            if (!storageTracker.Has(__instance) ||
-                storageTracker[__instance] == 0 || storageTracker[__instance] == 2)
-            {
-                return true;
-            }
-
-            __result = false;
-            return false;
+            return true;
         }
+
+        __result = false;
+        return false;
     }
 }

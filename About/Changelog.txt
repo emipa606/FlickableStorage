@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.4.1 - Mod updated for 1.4 and passed autotests
+
+
 1.0.13.0 - Should work better with Nutrient paste hoppers
 
 

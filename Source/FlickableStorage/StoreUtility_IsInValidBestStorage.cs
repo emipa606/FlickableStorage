@@ -2,40 +2,39 @@
 using RimWorld;
 using Verse;
 
-namespace FlickableStorage
+namespace FlickableStorage;
+
+[HarmonyPatch(typeof(StoreUtility), "IsInValidBestStorage", typeof(Thing))]
+internal class StoreUtility_IsInValidBestStorage
 {
-    [HarmonyPatch(typeof(StoreUtility), "IsInValidBestStorage", typeof(Thing))]
-    internal class StoreUtility_IsInValidBestStorage
+    private static void Prefix(Thing t, out int __state)
     {
-        private static void Prefix(Thing t, out int __state)
+        __state = -1;
+        var destination = StoreUtility.CurrentHaulDestinationOf(t);
+        var storageTracker = destination?.Map.GetStorageTracker();
+        if (storageTracker == null)
         {
-            __state = -1;
-            var destination = StoreUtility.CurrentHaulDestinationOf(t);
-            var storageTracker = destination?.Map.GetStorageTracker();
-            if (storageTracker == null)
-            {
-                return;
-            }
-
-            if (!storageTracker.Has(destination) ||
-                storageTracker[destination] == 0 || storageTracker[destination] == 2)
-            {
-                return;
-            }
-
-            __state = storageTracker[destination];
-            storageTracker[destination] = 0;
+            return;
         }
 
-        private static void Postfix(Thing t, int __state)
+        if (!storageTracker.Has(destination) ||
+            storageTracker[destination] == 0 || storageTracker[destination] == 2)
         {
-            if (__state == -1)
-            {
-                return;
-            }
-
-            var destination = StoreUtility.CurrentHaulDestinationOf(t);
-            destination.Map.GetStorageTracker()[destination] = __state;
+            return;
         }
+
+        __state = storageTracker[destination];
+        storageTracker[destination] = 0;
+    }
+
+    private static void Postfix(Thing t, int __state)
+    {
+        if (__state == -1)
+        {
+            return;
+        }
+
+        var destination = StoreUtility.CurrentHaulDestinationOf(t);
+        destination.Map.GetStorageTracker()[destination] = __state;
     }
 }
