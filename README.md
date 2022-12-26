@@ -57,3 +57,4 @@ https://ko-fi.com/G2G55DDYD]![Image](https://i.imgur.com/Utx6OIH.png)
 
 
 
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2497907804]Last updated 2022-12-26
