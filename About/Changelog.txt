@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.4.3 - Updated russian translation by Reiquard
+
+
 1.4.2 - Chinese translation added, thanks shiuanyue.
 Used DeepL to update translations for French, German, Russian
 
