@@ -26,6 +26,37 @@ public class StorageTracker : MapComponent
         return haulDestinations.ContainsKey(zone);
     }
 
+    public void UpdateDestinations(IHaulDestination destination, int newValue)
+    {
+        haulDestinations[destination] = newValue;
+
+        if (destination is not IStorageGroupMember storageGroupMember)
+        {
+            return;
+        }
+
+        if (storageGroupMember.Group == null)
+        {
+            return;
+        }
+
+        var otherMembers = storageGroupMember.Group.members.Where(member => member != storageGroupMember);
+        if (!otherMembers.Any())
+        {
+            return;
+        }
+
+        foreach (var groupMember in otherMembers)
+        {
+            if (groupMember is not IHaulDestination linkedDestination)
+            {
+                continue;
+            }
+
+            haulDestinations[linkedDestination] = newValue;
+        }
+    }
+
     public override void ExposeData()
     {
         base.ExposeData();

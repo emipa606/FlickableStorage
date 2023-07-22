@@ -55,7 +55,7 @@ internal class IHaulDestination_GetGizmos
                     icon = FlickableStorage.FlickOffGizmo,
                     defaultLabel = "FlickableStorage.Label.Off".Translate(),
                     defaultDesc = "FlickableStorage.Description.Off".Translate(),
-                    action = delegate { storageTracker[destination] = 2; }
+                    action = delegate { storageTracker.UpdateDestinations(destination, 2); }
                 };
             case 2:
                 return new Command_Action
@@ -63,7 +63,7 @@ internal class IHaulDestination_GetGizmos
                     icon = FlickableStorage.FlickInGizmo,
                     defaultLabel = "FlickableStorage.Label.In".Translate(),
                     defaultDesc = "FlickableStorage.Description.In".Translate(),
-                    action = delegate { storageTracker[destination] = 3; }
+                    action = delegate { storageTracker.UpdateDestinations(destination, 3); }
                 };
             case 3:
                 return new Command_Action
@@ -71,7 +71,7 @@ internal class IHaulDestination_GetGizmos
                     icon = FlickableStorage.FlickOutGizmo,
                     defaultLabel = "FlickableStorage.Label.Out".Translate(),
                     defaultDesc = "FlickableStorage.Description.Out".Translate(),
-                    action = delegate { storageTracker[destination] = 0; }
+                    action = delegate { storageTracker.UpdateDestinations(destination, 0); }
                 };
             default:
                 return new Command_Action
@@ -79,7 +79,7 @@ internal class IHaulDestination_GetGizmos
                     icon = FlickableStorage.FlickOnGizmo,
                     defaultLabel = "FlickableStorage.Label.On".Translate(),
                     defaultDesc = "FlickableStorage.Description.On".Translate(),
-                    action = delegate { storageTracker[destination] = 1; }
+                    action = delegate { storageTracker.UpdateDestinations(destination, 1); }
                 };
         }
     }

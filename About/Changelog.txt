@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.4.4 - Should now change settings in all linked storages
+
+
 1.4.3 - Updated russian translation by Reiquard
 
 
