@@ -5,15 +5,11 @@ using Verse;
 
 namespace FlickableStorage;
 
-public class StorageTracker : MapComponent
+public class StorageTracker(Map map) : MapComponent(map)
 {
     private Dictionary<IHaulDestination, int> haulDestinations = new Dictionary<IHaulDestination, int>();
     private List<IHaulDestination> tmpHaulDestinationsKeys;
     private List<int> tmpHaulDestinationValues;
-
-    public StorageTracker(Map map) : base(map)
-    {
-    }
 
     public int this[IHaulDestination destination]
     {

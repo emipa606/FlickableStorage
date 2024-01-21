@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.4.5 - Fixed multiplayer compatibility, by notfood
+
+
 1.4.4 - Should now change settings in all linked storages
 
 
