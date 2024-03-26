@@ -47,13 +47,13 @@ public static class FlickableStorage
 
         StorageTracker value;
 
-        if (!storageTrackerCache.ContainsKey(map))
+        if (!storageTrackerCache.TryGetValue(map, out var storageTracker))
         {
             value = storageTrackerCache[map] = map.GetComponent<StorageTracker>();
         }
         else
         {
-            value = storageTrackerCache[map];
+            value = storageTracker;
         }
 
         return value;
