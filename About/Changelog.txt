@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.5.1 - Fixed an issue where pawns would not deliver items to correct area, ignoring blocked storage-settings
+
+
 1.5.0 - Mod updated for 1.5 and passed autotests
 
 
