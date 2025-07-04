@@ -4,7 +4,7 @@ using Verse;
 
 namespace FlickableStorage;
 
-[HarmonyPatch(typeof(ForbidUtility), "IsForbidden", typeof(Thing), typeof(Faction))]
+[HarmonyPatch(typeof(ForbidUtility), nameof(ForbidUtility.IsForbidden), typeof(Thing), typeof(Faction))]
 internal class ForbidUtility_IsForbidden_Thing
 {
     private static void Postfix(ref Thing t, ref bool __result)
@@ -14,10 +14,10 @@ internal class ForbidUtility_IsForbidden_Thing
             return;
         }
 
-        __result = IsItemLocked(t);
+        __result = isItemLocked(t);
     }
 
-    private static bool IsItemLocked(Thing item)
+    private static bool isItemLocked(Thing item)
     {
         if (item is not { Spawned: true })
         {
@@ -28,11 +28,11 @@ internal class ForbidUtility_IsForbidden_Thing
         {
             case Blueprint:
             case Frame:
-                return false;
+                break;
             case ThingWithComps thingWithComps:
             {
                 var comp = thingWithComps.GetComp<CompForbiddable>();
-                return comp != null && IsPositionLocked(item.Position, item.Map, item);
+                return comp != null && isPositionLocked(item.Position, item.Map, item);
             }
         }
 
@@ -40,7 +40,7 @@ internal class ForbidUtility_IsForbidden_Thing
     }
 
 
-    private static bool IsPositionLocked(IntVec3 position, Map map, Thing thing)
+    private static bool isPositionLocked(IntVec3 position, Map map, Thing thing)
     {
         var parent = position.GetSlotGroup(map)?.parent;
         var storageTracker = parent?.Map.GetStorageTracker();

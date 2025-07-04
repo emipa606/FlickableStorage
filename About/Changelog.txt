@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.6.0 - Updated to 1.6
+
+
 1.5.2 - Found a better solution for the priority issues, also fixes interaction with Project RimFactory Revived
 
 

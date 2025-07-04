@@ -11,7 +11,7 @@ internal class IHaulDestination_GetGizmos
 {
     private static IEnumerable<MethodBase> TargetMethods()
     {
-        foreach (var type in FlickableStorage.targets)
+        foreach (var type in FlickableStorage.Targets)
         {
             yield return AccessTools.Method(type, "GetGizmos");
         }
@@ -26,11 +26,11 @@ internal class IHaulDestination_GetGizmos
 
         if (__instance is IHaulDestination destination)
         {
-            yield return GetCommandAction(destination);
+            yield return getCommandAction(destination);
         }
     }
 
-    private static Command_Action GetCommandAction(IHaulDestination destination)
+    private static Command_Action getCommandAction(IHaulDestination destination)
     {
         var storageTracker = destination?.Map?.GetStorageTracker();
 

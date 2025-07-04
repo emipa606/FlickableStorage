@@ -17,21 +17,20 @@ public static class FlickableStorage
     internal static readonly Texture2D FlickInGizmo = ContentFinder<Texture2D>.Get("UI/FlickInGizmo");
     internal static readonly Texture2D FlickOutGizmo = ContentFinder<Texture2D>.Get("UI/FlickOutGizmo");
 
-    internal static readonly List<Type> targets;
+    internal static readonly List<Type> Targets;
 
-    private static readonly Dictionary<Map, StorageTracker> storageTrackerCache =
-        new Dictionary<Map, StorageTracker>();
+    private static readonly Dictionary<Map, StorageTracker> storageTrackerCache = new();
 
     static FlickableStorage()
     {
-        targets = GenTypes.AllTypes.Where(IsHaulDestinationImplementationWithGizmos).ToList();
-        targets = targets.Where(type => type.ToString() != "PresetFilteredZones.Zone_PresetStockpile").ToList();
-        Log.Message($"[FlickableStorage] Found storage-classes: {string.Join(", ", targets)}");
+        Targets = GenTypes.AllTypes.Where(isHaulDestinationImplementationWithGizmos).ToList();
+        Targets = Targets.Where(type => type.ToString() != "PresetFilteredZones.Zone_PresetStockpile").ToList();
+        Log.Message($"[FlickableStorage] Found storage-classes: {string.Join(", ", Targets)}");
         var harmony = new Harmony("Mlie.FlickableStorage");
         harmony.PatchAll(Assembly.GetExecutingAssembly());
     }
 
-    private static bool IsHaulDestinationImplementationWithGizmos(Type t)
+    private static bool isHaulDestinationImplementationWithGizmos(Type t)
     {
         return !t.IsAbstract
                && t.GetInterfaces().Contains(typeof(IHaulDestination))

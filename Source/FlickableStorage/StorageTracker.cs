@@ -7,19 +7,15 @@ namespace FlickableStorage;
 
 public class StorageTracker(Map map) : MapComponent(map)
 {
-    private Dictionary<IHaulDestination, int> haulDestinations = new Dictionary<IHaulDestination, int>();
+    private Dictionary<IHaulDestination, int> haulDestinations = new();
     private List<IHaulDestination> tmpHaulDestinationsKeys;
     private List<int> tmpHaulDestinationValues;
 
-    public int this[IHaulDestination destination]
-    {
-        get => haulDestinations[destination];
-        set => haulDestinations[destination] = value;
-    }
+    public int this[IHaulDestination destination] => haulDestinations[destination];
 
-    public bool Has(IHaulDestination zone)
+    public bool Has(IHaulDestination haulDestination)
     {
-        return haulDestinations.ContainsKey(zone);
+        return haulDestinations.ContainsKey(haulDestination);
     }
 
     public void UpdateDestinations(IHaulDestination destination, int newValue)
@@ -36,7 +32,7 @@ public class StorageTracker(Map map) : MapComponent(map)
             return;
         }
 
-        var otherMembers = storageGroupMember.Group.members.Where(member => member != storageGroupMember);
+        var otherMembers = storageGroupMember.Group.members.Where(member => member != storageGroupMember).ToArray();
         if (!otherMembers.Any())
         {
             return;
@@ -58,14 +54,14 @@ public class StorageTracker(Map map) : MapComponent(map)
         base.ExposeData();
         if (Scribe.mode == LoadSaveMode.Saving)
         {
-            Cull();
+            cull();
         }
 
         Scribe_Collections.Look(ref haulDestinations, "StockpileStatuses", LookMode.Reference, LookMode.Value,
             ref tmpHaulDestinationsKeys, ref tmpHaulDestinationValues);
     }
 
-    private void Cull()
+    private void cull()
     {
         foreach (var destination in haulDestinations.Keys.ToList())
         {

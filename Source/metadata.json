@@ -2,7 +2,17 @@
   "Continued": false,
   "CanAdd": "0",
   "CanRemove": "0",
-  "PreviewVersion": "1.5",
+  "PreviewVersion": "1.6",
   "SocialImageSet": true,
-  "FundingSet": true
+  "FundingSet": true,
+  "LastXmlCleaning": "2025-07-04T20:18:08.5786078+02:00",
+  "Patches": false,
+  "Defs": false,
+  "Assemblies": true,
+  "LinesOfCode": 11794.0,
+  "LinesOfXML": 0,
+  "SearchTags": [
+    "storage",
+    " settings"
+  ]
 }
