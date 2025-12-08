@@ -9,7 +9,7 @@ namespace FlickableStorage;
 [HarmonyPatch]
 internal class IHaulDestination_HaulDestinationEnabled
 {
-    private static IEnumerable<MethodBase> TargetMethods()
+    public static IEnumerable<MethodBase> TargetMethods()
     {
         foreach (var type in FlickableStorage.Targets)
         {
@@ -31,16 +31,15 @@ internal class IHaulDestination_HaulDestinationEnabled
         }
     }
 
-    private static bool Prefix(IHaulDestination __instance, ref bool __result)
+    public static bool Prefix(IHaulDestination __instance, ref bool __result)
     {
-        var storageTracker = __instance.Map.GetStorageTracker();
+        var storageTracker = GlobalStorageTracker.Instance;
         if (storageTracker == null)
         {
             return true;
         }
 
-        if (!storageTracker.Has(__instance) ||
-            storageTracker[__instance] == 0 || storageTracker[__instance] == 2)
+        if (!storageTracker.Has(__instance, out var status) || status == 0 || status == 2)
         {
             return true;
         }

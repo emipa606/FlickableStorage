@@ -16,7 +16,8 @@ internal static class Multiplayer
         }
 
         MP.RegisterSyncWorker<IHaulDestination>(IHaulDestinationWorker);
-        MP.RegisterSyncMethod(AccessTools.Method(typeof(StorageTracker), nameof(StorageTracker.UpdateDestinations)));
+        MP.RegisterSyncMethod(AccessTools.Method(typeof(GlobalStorageTracker),
+            nameof(GlobalStorageTracker.UpdateDestinations)));
     }
 
     private static void IHaulDestinationWorker(SyncWorker sync, ref IHaulDestination destination)

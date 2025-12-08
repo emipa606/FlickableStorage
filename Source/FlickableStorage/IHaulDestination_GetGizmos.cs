@@ -9,7 +9,7 @@ namespace FlickableStorage;
 [HarmonyPatch]
 internal class IHaulDestination_GetGizmos
 {
-    private static IEnumerable<MethodBase> TargetMethods()
+    public static IEnumerable<MethodBase> TargetMethods()
     {
         foreach (var type in FlickableStorage.Targets)
         {
@@ -17,7 +17,7 @@ internal class IHaulDestination_GetGizmos
         }
     }
 
-    private static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> __result, object __instance)
+    public static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> __result, object __instance)
     {
         foreach (var gizmo in __result)
         {
@@ -32,7 +32,7 @@ internal class IHaulDestination_GetGizmos
 
     private static Command_Action getCommandAction(IHaulDestination destination)
     {
-        var storageTracker = destination?.Map?.GetStorageTracker();
+        var storageTracker = GlobalStorageTracker.Instance;
 
         if (storageTracker == null)
         {
@@ -45,7 +45,7 @@ internal class IHaulDestination_GetGizmos
             return null;
         }
 
-        var current = storageTracker.Has(destination) ? storageTracker[destination] : 0;
+        var current = storageTracker.Has(destination, out var status) ? status : 0;
 
         switch (current)
         {

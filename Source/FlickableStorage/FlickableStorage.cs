@@ -19,8 +19,6 @@ public static class FlickableStorage
 
     internal static readonly List<Type> Targets;
 
-    private static readonly Dictionary<Map, StorageTracker> storageTrackerCache = new();
-
     static FlickableStorage()
     {
         Targets = GenTypes.AllTypes.Where(isHaulDestinationImplementationWithGizmos).ToList();
@@ -35,26 +33,5 @@ public static class FlickableStorage
         return !t.IsAbstract
                && t.GetInterfaces().Contains(typeof(IHaulDestination))
                && AccessTools.Method(t, "GetGizmos") != null;
-    }
-
-    internal static StorageTracker GetStorageTracker(this Map map)
-    {
-        if (map == null)
-        {
-            return null;
-        }
-
-        StorageTracker value;
-
-        if (!storageTrackerCache.TryGetValue(map, out var storageTracker))
-        {
-            value = storageTrackerCache[map] = map.GetComponent<StorageTracker>();
-        }
-        else
-        {
-            value = storageTracker;
-        }
-
-        return value;
     }
 }
