@@ -1,5 +1,8 @@
 # Changelog for FlickableStorage
 
+1.6.2 - Fixed typo
+
+
 1.6.1 - Storages should now keep settings between maps (gravships)
 
 

@@ -21,7 +21,7 @@ internal class IHaulDestination_HaulDestinationEnabled
                 continue;
             }
 
-            propertyGetter = AccessTools.PropertyGetter(type, "Rimworld.IHaulDestination.HaulDestinationEnabled");
+            propertyGetter = AccessTools.PropertyGetter(type, "RimWorld.IHaulDestination.HaulDestinationEnabled");
             if (propertyGetter == null)
             {
                 continue;
