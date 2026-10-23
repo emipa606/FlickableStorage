@@ -10,8 +10,8 @@ public class GlobalStorageTracker : GameComponent
     public static GlobalStorageTracker Instance;
 
     private Dictionary<IHaulDestination, int> haulDestinations = new();
-    private List<IHaulDestination> tmpHaulDestinationsKeys;
     private List<int> tmpHaulDestinationValues;
+    private List<IHaulDestination> tmpHaulDestinationsKeys;
 
     public GlobalStorageTracker(Game game)
     {

@@ -2,50 +2,71 @@
 
 ## Mod Overview and Purpose
 
-The Flickable Storage mod for RimWorld offers players enhanced control over the storage systems in their colonies. By setting storage buildings and stockpiles to one of four distinct modes—Storage On, Storage Off, Accept Only, and Retrieve Only—players can more effectively manage their resources. This customization allows for strategic planning of resource distribution, ensuring that items are available exactly when and where they are needed without unnecessary hauling activities.
+**Mod Name:** Flickable Storage  
+**Author:** Mlie  
+**Display Name:** Flickable Storage  
+**PackageId:** Mlie.FlickableStorage  
+**Dependencies:** brrainz.harmony  
+
+The **Flickable Storage** mod for RimWorld offers enhanced storage management options by introducing configurable storage settings for stockpiles and storage buildings. This mod provides RimWorld players with greater control over the accessibility and management of their resources.
 
 ## Key Features and Systems
 
-- **Storage On:** Functions as standard storage, allowing items to be both stored and retrieved.
-- **Storage Off:** Disables the acceptance or release of items, effectively locking the storage.
-- **Accept Only:** Items can be stored but not retrieved, ideal for maintaining stockpiles of essential materials.
-- **Retrieve Only:** Allows for retrieval of items but prevents new items from being stored, useful for depleting stockpiles strategically.
-- **Compatibility:** Designed to function with any mods that use the `IHaulDestination` class, tested with LWM's Deep Storage.
-- **Linked Storages:** Changes to flick settings are applied across all linked storages.
+- **Configurable Storage Settings:** Players can set each storage unit or stockpile to one of four modes:
+  - **Storage On:** Standard functionality allowing normal stockpile behavior.
+  - **Storage Off:** Prevents both storing and retrieving items.
+  - **Accept Only:** Allows pawns to store items but not retrieve them.
+  - **Retrieve Only:** Allows pawns to retrieve items but not store them.
+
+- **Custom Examples:**
+  - Disable food deliveries to prison cells with deactivated inmates by setting shelves to "retrieve only."
+  - Reserve a stockpile of emergency materials by using the "store only" setting with a high priority.
+
+- **Technical Implementation:**
+  - The mod modifies the "Accept" check to block storing.
+  - It uses a modified "Forbidden" check to block retrieving, which pawns in a mental break can bypass, ensuring critical items can still be accessed in emergencies.
+
+- **Compatibility:**
+  - Compatible with other mods using the `IHaulDestination` interface, such as LWM's Deep Storage.
+  - Automatically updates flick settings across all linked storage units.
+
+- **Limitations:**
+  - The mod cannot forbid chunks, requiring an additional mod like "Forbiddable Debris" for full control.
 
 ## Coding Patterns and Conventions
 
-- **C# Best Practices:** Utilize clear and descriptive naming conventions for classes and methods. Follow proper access control practices to ensure encapsulation.
-- **Modular Design:** Maintain separation of concerns by organizing code into distinct classes with single responsibilities.
-- **Error Handling:** Implement error handling to manage unexpected scenarios gracefully.
+- **Namespace Organization:** The mod uses a structured namespace with one class per C# file:
+  - **ForbidUtility_IsForbidden_Thing.cs** - Handles forbidden checks for items.
+  - **GlobalStorageTracker.cs** - Manages global storage settings.
+  - **StorageTracker.cs** - Manages individual storage data via `ExposeData`.
+  - **IHaulDestination_HaulDestinationEnabled.cs** - Patches to manage haul destination functionalities.
+  - **FlickableStorage.cs** - Main entry point, initializes mod settings.
+
+- **Conventions:**
+  - Use descriptive method and variable names that clearly indicate their purpose.
+  - Consistent use of prefixes and postfixes for Harmony patches.
 
 ## XML Integration
 
-- **Note:** This mod primarily involves C# and does not include any XML definitions. Any future expansion to include XML should adhere to RimWorld's def-based XML structure.
+- This mod does not currently utilize XML files. All functionality is implemented directly through C# code.
 
 ## Harmony Patching
 
-- **Harmony Library:** The mod uses the Harmony library for non-invasive method patching to alter the game's storage behaviors.
-- **Patch Structures:**
-  - **Prefix and Postfix Methods:** Utilize these Harmony features to modify the behavior of existing methods such as the `Accept-check` and `Forbidden check`.
-  - **Target Methods:** Specify which methods in the base game are targeted by each Harmony patch.
+- **Dependency:** The mod relies on `brrainz.harmony` for runtime code alterations.
+- **Approach:** 
+  - **Prefix/Postfix Methods:** Modify or extend game logic using prefix and postfix methods strategically.
+  - **Patch Example in `ForbidUtility_IsForbidden_Thing`:** The `Postfix` method modifies the retrieval logic by checking if an item is locked according to the mod's settings.
 
-## Suggestions for GitHub Copilot
+## Suggestions for Copilot
 
-To assist with future development:
-- **C# Code Generation:** Use Copilot to suggest boilerplate code for new features or patches, especially when creating new methods for handling storage states.
-- **Harmony Patches:** Leverage Copilot's recommendations when creating Harmony patches to ensure correctly formatted and efficient patches.
-- **Error Messages and Logging:** Copilot can help in drafting informative error messages and implementing logging features, enhancing debugging and performance tracking.
-- **Multiplayer Support:** Given the mod's multiplayer compatibility, use Copilot to suggest solutions for synchronizing storage states across different players' sessions.
+To enhance the development of this mod using GitHub Copilot, consider:
 
-## Contributors and Credits
+- **Adding Commentaries:** Provide inline comments to help clarify the logic for future developers.
+- **Integration Testing:** Use Copilot to generate tests that ensure compatibility with other popular storage mods.
+- **Debugging Aids:** Introduce debug messages during patches to confirm correct application of mod features.
+- **Performance Optimization:** Leverage Copilot to suggest possible optimizations, especially in areas affecting game performance such as storage checks.
 
-- **notfood:** Provided support for multiplayer functionality, optimization, and generalization.
-- **Waveshaper:** Assisted in debugging processes.
-- **HawnHan:** Contributed the Chinese translation.
-- **Velcroboy333:** Originated the mod's conceptual idea.
-
-These instructions serve as a guide for using GitHub Copilot effectively within the context of the Flickable Storage mod development, ensuring a streamlined and consistent coding process aligned with the mod's goals.
+By following these guidelines and leveraging Copilot's capabilities, development and maintenance can be streamlined, ensuring that the Flickable Storage mod remains robust and user-friendly.
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -59,4 +80,6 @@ These instructions serve as a guide for using GitHub Copilot effectively within 
 ## Hard rules (must follow)
 - Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
 - Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
 

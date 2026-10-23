@@ -5,7 +5,7 @@ using Verse;
 namespace FlickableStorage;
 
 [HarmonyPatch(typeof(ForbidUtility), nameof(ForbidUtility.IsForbidden), typeof(Thing), typeof(Faction))]
-internal class ForbidUtility_IsForbidden_Thing
+internal static class ForbidUtility_IsForbidden_Thing
 {
     public static void Postfix(ref Thing t, ref bool __result)
     {

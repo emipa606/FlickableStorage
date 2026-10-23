@@ -8,8 +8,8 @@ namespace FlickableStorage;
 public class StorageTracker(Map map) : MapComponent(map)
 {
     private Dictionary<IHaulDestination, int> haulDestinations = new();
-    private List<IHaulDestination> tmpHaulDestinationsKeys;
     private List<int> tmpHaulDestinationValues;
+    private List<IHaulDestination> tmpHaulDestinationsKeys;
 
 
     public override void ExposeData()

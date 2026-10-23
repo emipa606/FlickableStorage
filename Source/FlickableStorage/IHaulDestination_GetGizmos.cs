@@ -7,7 +7,7 @@ using Verse;
 namespace FlickableStorage;
 
 [HarmonyPatch]
-internal class IHaulDestination_GetGizmos
+internal static class IHaulDestination_GetGizmos
 {
     public static IEnumerable<MethodBase> TargetMethods()
     {
